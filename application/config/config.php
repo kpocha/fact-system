@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/clientes/gestion_clientes/';
+$config['base_url']	= 'http://localhost/fact-system';
 
 /*
 |--------------------------------------------------------------------------
