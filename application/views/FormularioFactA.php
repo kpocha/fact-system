@@ -22,24 +22,30 @@
 			 	$Telefono = 0;	
 			 	$Cuit = 0;
 			 	//enviamos las variables al método del controlador
+			 	$atributos = array('class' => 'form-horizontal');
 				echo form_open('facturacion/nuevo'); 
 			}
 	 	?>
- 	<div id="FacturaTableContainerA" align="center" class="facturas">
-		<div align="center" class="tipoFactura">A</div>
-	  	<tr>
-		    <td align="left">Razón Social: <input name="RazonSocial" id="RazonSocial" size="30px" type="text"></td>
-	    </tr>
-	  	<tr>
-	  		<td align="left">Domicilio: <input id="Domicilio" name="Domicilio" size="30px"  type="text" ></td>
-	  		<td align="right">Teléfono: <input id= "Telefono" name="Telefono" type="text" size="20"></td>
-	  	</tr>
-	   	<tr>
-	        <td align="right">CUIT: <input id="Cuit" name="Cuit" type="text"></td>
-	</div>
-	<div align="center" style="width: 820px; margin-top: 5px;">
-	  <button type="submit" class="btn btn-default">Guardar</button>
-	  <!-- </form> -->
-	  <a type="button" class="btn btn-default" href="index">Cancelar</a>
-	</div>
+	 	<div class="form-group"  id="FacturaTableContainerA" >
+			<div align="center" class="tipoFactura"> <h3>Tipo de factura A</h3></div>
+			<div class="form-group">		
+				<span class="col-sm-2 control-label">Razón Social:</span> <input name="RazonSocial" id="RazonSocial" type="text">
+			</div>
+			<div class="form-group">  		
+				<span class="col-sm-2 control-label">Domicilio:</span> <input id="Domicilio" name="Domicilio" type="text" >
+			</div>
+			<div class="form-group">
+	  			<span class="col-sm-2 control-label">Teléfono:</span> <input id= "Telefono" name="Telefono" type="text" >
+			</div>
+			<div class="form-group">
+				<span class="col-sm-2 control-label">CUIT:</span> <input id="Cuit" name="Cuit" type="text">
+			</div>
+	  		
+		</div>
+		<div align="center">
+		  <button type="submit" class="btn btn-default">Guardar</button>
+		  <!-- </form> -->
+		  <a type="button" class="btn btn-default" href="index">Cancelar</a>
+		</div>
+	</form>
 </section>
