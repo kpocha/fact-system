@@ -1,18 +1,30 @@
-
 <section class="section" style="margin:20px;" >
   		<?php
 
-	  		if (isset($data)) {	  			
-	  			echo form_open('facturacion/modif');
-	  			//recorremos el array que nos manda el controlador
-			 	foreach ($data as $factura) {
-			 		
-			 		$RazonSocial = $factura->RazonSocial;
-			 		$Domicilio= $factura->Domicilio;
-			 		$Telefono = $factura->Telefono;
-			 		$Cuit = $factura->Cuit;
-			 				
-			 		}
+	  		if (isset($data)) {
+	  		  	  /*"Cerramos" php, y es como que se crear un nuevo html, asique se ejecuta el script como 
+	  		  	  cuando arranca cualquier html*/
+	  		  	  ?> 
+						<script languaje="javacript"> 
+						<?php 
+						//Dentro del script abrimos php y recorremos el array que nos mando el controlador
+							foreach ($data as $factura) {
+							 		$RazonSocial = $factura->RazonSocial;
+							 		$Domicilio= $factura->Domicilio;
+							 		$Telefono = $factura->Telefono;
+							 		$Cuit = $factura->Cuit;
+							 			}
+						?>
+						//usamos las funciones de js para tomar los html y mandarle los valores que trajimos del controlaod
+						window.onload=function(){document.getElementById('RazonSocial').value = ' <?php echo $RazonSocial ?> ';
+						                         document.getElementById('Domicilio').value = ' <?php echo $Domicilio ?> ';
+						                         document.getElementById('Telefono').value = ' <?php echo $Telefono ?> ';
+						                         document.getElementById('Cuit').value = ' <?php echo $Cuit ?> ';
+						                     };
+
+						</script> 
+					<?php  
+	  			//abrimos el metodo modif del controlador
 			 	echo form_open('facturacion/modif'); 
 			 	echo '<input type="hidden" class="form-control" name="Cuit" value="'.$Cuit.'" >';
 			}else{
@@ -45,7 +57,7 @@
 		<div align="center">
 		  <button type="submit" class="btn btn-default">Guardar</button>
 		  <!-- </form> -->
-		  <a type="button" class="btn btn-default" href="index">Cancelar</a>
+		  <a type="button" class="btn btn-default" href="facturacion/listar">Cancelar</a>
 		</div>
 	</form>
 </section>

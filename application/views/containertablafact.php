@@ -10,15 +10,15 @@
 			<a class="btn btn-default" href="<?php echo base_url('facturacion/formulario'); ?> ">Nuevo</a>
 			<br/>
 		</div>
-		<div class="col-sm-3">
+		<!-- <div class="col-sm-3">
 			<br/>
 			<br/>
-		</div>
-		<div class="col-sm-3">
+		</div> -->
+		<!-- <div class="col-sm-3">
 			<br/>
 			llamar
 			<br/>
-		</div>
+		</div> -->
 	</div>
 
 	<div id="tabla">
@@ -46,7 +46,8 @@
 		$('#buscar').keyup(function (event) {
 				
 				var loading = '<div><img style="width:3%;" src="<?php echo base_url('images/loading-blue.gif'); ?>"/> LOADING</div>'
-				var url_ok = '<?php echo base_url("welcome/buscar"); ?>';
+
+				var url_ok = '<?php echo base_url("Facturacion/buscar"); ?>';
 				var input = $(this).val();
 				$('#tabla').html(loading);
 	            event.preventDefault();
@@ -106,7 +107,7 @@
 		 	event.preventDefault();
 		 	addComment();
 		 });		 
-		 
+		
 		 $( ".create-user" ).on( "click", function() {
 		 	var uid = this.id;
 		 	//dialog.dialog( "open" );
