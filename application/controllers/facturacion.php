@@ -81,20 +81,20 @@ public function modificar(){
  		
  		$this->listar();
 	}
-	/*public function buscar(){
+	public function buscar(){
 		extract($_POST);
-		$q = "%".$q."%";
-		$busqueda = $this->abm_model->buscar($q);
-		//echo json_encode($busqueda);
+		
+		$busqueda = $this->Facturaa_model->buscar('facta',$q);
+		
 		$result['data'] = $busqueda;
-		$this->load->view('tabla-clientes',$result);
+		$this->load->view('tablafacturaa',$result);
 
-	}*/
-/*	public function eliminar(){
-		$uid = $_GET['uid'];
-		$this->abm_model->eliminar($uid);
+	}
+	public function eliminar(){
+		$Cuit = $_GET['Cuit'];
+		$this->Facturaa_model->eliminar('facta',$Cuit);
 		$this->listar();
-	}*/
+	}
 
 	/*public function mostrar(){
 		$Cuit = $_GET['Cuit'];
