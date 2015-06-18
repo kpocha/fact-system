@@ -8,16 +8,16 @@ class Facturacion extends CI_Controller {
  	parent::__construct();
  	//Cargamos el modelo para poder trabajar con los datos del motor de
  	//bases de ddatos
-		$this->load->model('FacturaA_model');
+		$this->load->model('Facturaa_model');
 		$this->load->helper('form');
 	
  	 
  }
  public function index()
 	{
-		//lo primero que hacemos al entrar a facturacion es facturacion
-		//enviamos al método facturacion
-		$this->formulario();
+		//lo primero que hacemos al entrar a facturacion es listar
+		//enviamos al método listar
+		$this->listar();
 	}
  public function formulario()
  {	//Le asignamos el titulo a la vista
@@ -30,7 +30,7 @@ class Facturacion extends CI_Controller {
 public function listar()
 	{
 		//Llamamos al metodo listar del modelo
-		$facturaa = $this->FacturaA_model->listar();
+		$facturaa = $this->Facturaa_model->listar();
 		//Recorremos el resultado del modelo
 		foreach ($facturaa as $key) {
 			$data[] = $key;
@@ -51,17 +51,18 @@ public function listar()
 					  'Cuit' => $Cuit);
 		/*Cargamos la funcion agregar, enviamos el nombre de la 
 		tabla en la que trabajamos, el array con los datos	*/		  
- 		$this->FacturaA_model->agregar('facta',$data);
+ 		$this->Facturaa_model->agregar('facta',$data);
         //cuando guarda en la BD, va a listar
  		redirect('/facturacion/listar');
 
-		//$Cuit = $this->FacturaA_model->ultimo_agregado('facta');
+		//$Cuit = $this->Facturaa_model->ultimo_agregado('facta');
 
  		//$this->listar();
 	}
 public function modificar(){
 		extract($_GET);
-		$facturaa = $this->FacturaA_model->factura_especifica($Cuit);
+		echo $Cuit;
+		$facturaa = $this->Facturaa_model->factura_especifica($Cuit);
 		$result['title'] = 'Formulario';
 		$result['main_content'] = 'FormularioFactA';
 		$result['data'] = $facturaa;
@@ -76,7 +77,7 @@ public function modificar(){
 					  'Telefono' => $Telefono,
 					  'Cuit' => $Cuit);
 
- 		$this->FacturaA_model->modificar('facta',$data, $Cuit);
+ 		$this->Facturaa_model->modificar('facta',$data, $Cuit);
  		
  		$this->listar();
 	}
@@ -96,17 +97,17 @@ public function modificar(){
 	}*/
 
 	/*public function mostrar(){
-		$uid = $_GET['uid'];
-		$cliente = $this->abm_model->cliente_especifico($uid);
-		foreach ($cliente as $clie) {
-			$nombre = $clie->nombre;
+		$Cuit = $_GET['Cuit'];
+		$facturaa = $this->Facturaa_model->factura_especifica($Cuit);
+		foreach ($facturaa as $fac) {
+			$nombre = $facturaa->RazonSocial;
 		}
-		$comentario = $this->abm_model->comentario($uid);
+		//$comentario = $this->abm_model->comentario($uid);
 
-		$result['title'] = 'Cliente: '.$nombre;
-		$result['main_content'] = 'cliente_especifico';
-		$result['data'] = $cliente;
-		$result['comentario'] = $comentario;
+		$result['title'] = 'RazonSocial: '.$nombre;
+		$result['main_content'] = 'factura_especifica';
+		$result['data'] = $facturaa;
+		//$result['comentario'] = $comentario;
 
 		//echo json_encode($result);
 

@@ -1,5 +1,5 @@
 <?php 
-class FacturaA_model extends CI_Model {
+class Facturaa_model extends CI_Model {
 
  function __construct()
     {
@@ -24,7 +24,6 @@ class FacturaA_model extends CI_Model {
        
     }
    function modificar($tabla,$data, $Cuit){
-    echo"modificar";
       $this->db->where('Cuit',$Cuit);
       $sql= $this->db->update($tabla,$data);
       

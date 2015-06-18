@@ -1,18 +1,35 @@
-
 <section class="section" style="margin:20px;" >
   		<?php
 
-	  		if (isset($data)) {	  			
-	  			echo form_open('facturacion/modif');
-	  			//recorremos el array que nos manda el controlador
+	  		if (isset($data)) {
+	  		  	  ?> 
+						<script languaje="javacript"> 
+						//console.log("<?php foreach ($data as $factura) {echo $factura->RazonSocial; }?>"); 
+						<?php 
+							foreach ($data as $factura) {
+							 		$RazonSocial = $factura->RazonSocial;
+							 		$Domicilio= $factura->Domicilio;
+							 		$Telefono = $factura->Telefono;
+							 		$Cuit = $factura->Cuit;
+							 			}
+						?>
+						window.onload=function(){document.getElementById('RazonSocial').value = ' <?php echo $RazonSocial ?> ';
+						                         document.getElementById('Domicilio').value = ' <?php echo $Domicilio ?> ';
+						                         document.getElementById('Telefono').value = ' <?php echo $Telefono ?> ';
+						                         document.getElementById('Cuit').value = ' <?php echo $Cuit ?> ';
+						                     };
+
+						</script> 
+					<?php  
+	  			/*recorremos el array que nos manda el controlador
 			 	foreach ($data as $factura) {
-			 		
+			 		echo $factura->RazonSocial;
 			 		$RazonSocial = $factura->RazonSocial;
 			 		$Domicilio= $factura->Domicilio;
 			 		$Telefono = $factura->Telefono;
 			 		$Cuit = $factura->Cuit;
-			 				
-			 		}
+			 		
+			 		}*/
 			 	echo form_open('facturacion/modif'); 
 			 	echo '<input type="hidden" class="form-control" name="Cuit" value="'.$Cuit.'" >';
 			}else{
@@ -45,7 +62,7 @@
 		<div align="center">
 		  <button type="submit" class="btn btn-default">Guardar</button>
 		  <!-- </form> -->
-		  <a type="button" class="btn btn-default" href="index">Cancelar</a>
+		  <a type="button" class="btn btn-default" href="facturacion/listar">Cancelar</a>
 		</div>
 	</form>
 </section>

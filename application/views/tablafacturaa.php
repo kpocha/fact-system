@@ -24,7 +24,7 @@
 				<!--base_url(va a las variables de la misma vista)-->
 				<td><a href="<?php echo base_url($mostrar); ?>"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td>
  				<td><a id="<?php echo $factura->Cuit; ?>" class="create-user"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></td>				
-				<td><a href="<?php echo base_url($modificar); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></td>
+				<td><a href="<?php echo base_url($modificar); ?>"><span  id ="modificar" class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></td>
 			 	<!--<td><a href="<?php echo base_url($eliminar); ?>" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td> 
 			-->
 			</tr>
