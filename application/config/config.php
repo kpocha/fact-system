@@ -10,11 +10,13 @@
 |
 |	http://example.com/
 |
-| If this is not set then CodeIgniter will guess the protocol, domain and
-| path to your installation.
+| If this is not set then CodeIgniter will try to guess the protocol, domain
+| and path to your installation. However, you should always configure this
+| explicitly and never rely on auto-guessing, especially in production
+| environments.
 |
 */
-$config['base_url']	= 'http://localhost/fact-system';
+$config['base_url'] = 'http://localhost/fact-system';
 
 /*
 |--------------------------------------------------------------------------
@@ -361,4 +363,5 @@ $config['proxy_ips'] = '';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 
+// esto es para decirle donde estan las librerias javascript
 $config['javascript_location'] = 'scripts/';

@@ -5,5 +5,6 @@ ErrorDocument 404 /index.php
         <IfModule mod_rewrite.c>
         RewriteEngine on
         RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteRule ^(.*)$ /fact-system/index.php/$1 [L,QSA]
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ index.php/$1 [L,QSA]
         </IfModule>
