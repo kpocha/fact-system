@@ -7,18 +7,24 @@
         </div>
           <div class="panel-body">
                 
-              <?php echo form_open('login/verificar'); ?>
+              <?php 
+                $opc = array('id' =>'login_form', 'class'=>'form_login' );
+                echo form_open('login/loguear'); 
+
+              ?>
               <!-- <form action="submit.php" method="post"> -->
                 <fieldset>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Username" id="user" name="Username" type="text">
+                  <input class="form-control" placeholder="Username" id="user" name="username" type="text" value="<?php echo set_value('username');?>">
+                  <?php echo form_error('username'); ?>
               </div>
               <div class="form-group">
                 <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                <?php echo form_error('password'); ?>
               </div>
               <input class="btn btn-lg btn-primary btn-block" type="submit" id="entrar" value="Entrar">
             </fieldset>
-              </form>
+            <?php echo form_close(); ?>
               <div id="tabla"></div>
           </div>
       </div>
