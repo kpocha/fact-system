@@ -13,9 +13,12 @@ class Abm_model extends CI_Model {
         return $sql->result();
     }
 
+
    function agregar($tabla, $data){
     $this->db->insert($tabla,$data);
-       
+    //Por si necesitas saber el id del que acabas de insertar.
+    $last_id = $this->db->insert_id();
+    //return $last_id;       
     }
    /*function modificar($tabla,$data, $Cuit){
 
@@ -34,6 +37,6 @@ class Abm_model extends CI_Model {
         $query = $this->db->get($tabla, 10);
         return $query->result();
     }
-    
+
 } 
  ?>
