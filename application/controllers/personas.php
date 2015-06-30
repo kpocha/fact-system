@@ -8,7 +8,7 @@ class Personas extends CI_Controller {
  	parent::__construct();
  	//Cargamos el modelo para poder trabajar con los datos del motor de
  	//bases de ddatos
-		$this->load->model('Abm_model');
+		$this->load->model('abm_model');
 		$this->load->helper('form');
 	
  	 
@@ -17,27 +17,30 @@ class Personas extends CI_Controller {
 	{
 		//lo primero que hacemos al entrar a facturacion es listar
 		//enviamos al método listar
-		//$this->listar_clientes();
+		$this->listar_clientes();
 	}
 public function listar_clientes()
 	{
 		//Llamamos al metodo listar del modelo
-		$facturaa = $this->Abm_model->listar_personas('Cliente', 'personas');
+		$facturaa = $this->abm_model->listar_personas('Cliente', 'personas');
 		//Recorremos el resultado del modelo
-		foreach ($facturaa as $key) {
-			$data[] = $key;
+		if (!isset($facturaa)) {
+			foreach ($facturaa as $key) {
+				$data[] = $key;
+			}
+		$result['data'] = $data;
 		}
+			
 		
 		$result['title'] = 'Clientes';
 		$result['main_content'] = 'containertablapersonas';
-		$result['data'] = $data;
 		$result['persona_tipo'] = 'Cliente';
 		$this->load->view('main_template',$result);
 	}
 public function listar_proveedores()
 	{
 		//Llamamos al metodo listar del modelo
-		$facturaa = $this->Abm_model->listar_personas('Proveedor', 'personas');
+		$facturaa = $this->abm_model->listar_personas('Proveedor', 'personas');
 		//Recorremos el resultado del modelo
 		foreach ($facturaa as $key) {
 			$data[] = $key;
@@ -75,7 +78,7 @@ public function listar_proveedores()
 					  'tipo_persona' => 'Cliente');
 		/*Cargamos la funcion agregar, enviamos el nombre de la 
 		tabla en la que trabajamos, el array con los datos	*/		  
- 		$this->Abm_model->agregar('personas',$data);
+ 		$this->abm_model->agregar('personas',$data);
         //cuando guarda en la BD, va a listar
  		redirect('/personas/listar_clientes');
 
@@ -98,14 +101,14 @@ public function listar_proveedores()
 					  'tipo_persona' => 'Proveedor');
 		/*Cargamos la funcion agregar, enviamos el nombre de la 
 		tabla en la que trabajamos, el array con los datos	*/		  
- 		$this->Abm_model->agregar('personas',$data);
+ 		$this->abm_model->agregar('personas',$data);
         //cuando guarda en la BD, va a listar
  		redirect('/personas/listar_proveedores');
 	}
 public function modificar(){
 		extract($_GET);
 		//echo $id;
-		$cliente = $this->Abm_model->registro_especifico($personas_id,'personas_id','personas');
+		$cliente = $this->abm_model->registro_especifico($personas_id,'personas_id','personas');
 		$result['title'] = 'Formulario Cliente';
 		$result['main_content'] = 'formulariopersonas';
 		$result['data'] = $cliente;
@@ -125,7 +128,7 @@ public function modificar(){
 					  'localidad' => $localidad,
 					  'iva_tipo' => $iva_tipo);
 
- 		$this->Abm_model->modificar($personas_id,'personas_id','personas',$data);
+ 		$this->abm_model->modificar($personas_id,'personas_id','personas',$data);
  		
  		if ($persona_tipo == 'Cliente') {
  			$this->listar_clientes();
@@ -138,7 +141,7 @@ public function modificar(){
 	public function buscarcliente(){
 		extract($_POST);
 		
-		$busqueda = $this->Abm_model->buscarpersona('personas',$q,'Cliente');
+		$busqueda = $this->abm_model->buscarpersona('personas',$q,'Cliente');
 		
 		$result['data'] = $busqueda;
 		$result['persona_tipo'] = 'Cliente';
@@ -148,7 +151,7 @@ public function modificar(){
 	public function buscarproveedor(){
 		extract($_POST);
 		
-		$busqueda = $this->Abm_model->buscarpersona('personas',$q,'Proveedor');
+		$busqueda = $this->abm_model->buscarpersona('personas',$q,'Proveedor');
 		
 		$result['data'] = $busqueda;
 		$result['persona_tipo'] = 'Proveedor';
@@ -157,7 +160,7 @@ public function modificar(){
 	}
 	public function eliminar(){
 		$personas_id = $_GET['personas_id'];
-		$this->Abm_model->eliminar($personas_id,'personas_id','personas');
+		$this->abm_model->eliminar($personas_id,'personas_id','personas');
 		$this->listar_clientes();
 	}
 
