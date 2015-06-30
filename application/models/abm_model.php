@@ -37,6 +37,15 @@ class Abm_model extends CI_Model {
         $query = $this->db->get($tabla, 10);
         return $query->result();
     }
+    function buscar($tabla, $buscar){
+      //$buscar = '%'.$buscar.'%';
+      //$this->db->select('descripcion');
+      $this->db->from($tabla);
+      $this->db->like('descripcion',$buscar);
+      
+      $query = $this->db->get();
+      return $query->result();
+    }
 
 } 
  ?>
