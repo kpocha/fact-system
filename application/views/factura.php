@@ -24,7 +24,7 @@
 					<?php //$ ?>
 					</div>
 					<div class="panel-body">
-					Fecha: <?php echo date('d-m-Y') ?> <a href="">o</a><br/> 
+					Fecha: <input id="datepicker" value="<?php //echo date('d/m/Y') ?>"></input><br/> 
 					detalles<br/>
 					más detalles<br/>
 					</div>
@@ -125,10 +125,21 @@
 	</form>
 </div>
 <script type="text/javascript" src="<?php echo base_url('scripts/autocompletar.js'); ?>"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
             $(document).ready(function(){
                 /* Una vez que se cargo la pagina , llamo a todos los autocompletes y
                  * los inicializo */
                 $('.autocomplete').autocomplete();
             });
+          $(function() {
+			    $( "#datepicker" ).datepicker({
+			    	defaultDate: "",
+			    	regional: 'es',
+			    	dateFormat: 'dd/mm/yy'
+			    });
+			    $( "#anim" ).change(function() {
+			      $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+			    });
+		  });
         </script>
