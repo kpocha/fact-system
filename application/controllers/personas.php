@@ -24,13 +24,13 @@ public function listar_clientes()
 		//Llamamos al metodo listar del modelo
 		$facturaa = $this->abm_model->listar_personas('Cliente', 'personas');
 		//Recorremos el resultado del modelo
-		if (!isset($facturaa)) {
+		if ($facturaa != NULL) {
 			foreach ($facturaa as $key) {
-				$data[] = $key;
+			$data[] = $key;
 			}
+		
 		$result['data'] = $data;
 		}
-			
 		
 		$result['title'] = 'Clientes';
 		$result['main_content'] = 'containertablapersonas';
