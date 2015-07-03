@@ -28,6 +28,7 @@ class Factura extends CI_Controller {
  }
  function stock(){
  	$search = trim($_GET['search']);
+<<<<<<< HEAD
  	$data = $this->abm_model->buscar('stock',$search);
  	//echo json_encode($data[0]->descripcion);
 	foreach ($data as $stock)
@@ -50,5 +51,37 @@ class Factura extends CI_Controller {
     }
 	*/
  }
+=======
+ 	$data = $this->abm_model->buscar('stock',$search,'descripcion');
+ 	if ($data == false) {
+ 		$tmpArray[] = NULL;
+ 		echo json_encode($tmpArray);
+ 	}else{
+		foreach ($data as $stock)
+		{
+	        $tmpArray[] = $stock;
+	        $descripcion = $stock->descripcion;
+		}
+
+		echo json_encode($tmpArray);
+		 }
+	}
+	function stock_datos(){
+		$cod = $_GET['cod'];
+		$data = $this->abm_model->buscar('stock',$cod,'cod_articulo');
+		foreach ($data as $stock)
+		{
+			$tmpArray[] = $stock;
+			$codigo[] = $stock->cod_articulo;
+
+		}
+		//echo json_encode($tmpArray);
+		//echo json_encode($codigo);
+		$result['data'] = $tmpArray;
+		echo json_encode($tmpArray);
+		return $tmpArray;
+
+	}
+>>>>>>> origin/facturacion
 }
 ?>
