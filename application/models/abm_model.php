@@ -1,11 +1,7 @@
 <?php 
 class Abm_model extends CI_Model {
-<<<<<<< HEAD
- function __construct()
-=======
 
 function __construct()
->>>>>>> origin/facturacion
     {
         parent::__construct();
     }
@@ -52,8 +48,6 @@ function __construct()
       $sql = $this->db->get('personas');
       return $sql -> result();
     }
-<<<<<<< HEAD
-=======
     
     function buscar($tabla, $buscar, $colum){
       //$buscar = '%'.$buscar.'%';
@@ -68,6 +62,5 @@ function __construct()
       
     }
 
->>>>>>> origin/facturacion
 } 
  ?>
