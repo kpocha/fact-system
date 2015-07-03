@@ -24,9 +24,9 @@
 					<?php //$ ?>
 					</div>
 					<div class="panel-body">
-					Fecha: <input id="datepicker" value="<?php //echo date('d/m/Y') ?>"></input><br/> 
-					detalles<br/>
-					más detalles<br/>
+						Fecha: <input id="datepicker" value="<?php echo date('d/m/Y') ?>"></input><br/> 
+						detalles<br/>
+						más detalles<br/>
 					</div>
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 			<thead> 
 				<tr>
 					<th>
-						Servicio
+						Codigo
 					</th>
 					<th>
 						Descripción
@@ -74,15 +74,14 @@
 			<tbody>
 				<tr>
 					
-						<td><input id="buscar"value="Artículo" type="text"></td>
+						<td class="text-center"><input id="codigo" type="text"></td>
 						
-						<td><div class="col-xs-2 autocomplete"><input value="" type="text" data-source="<?php echo base_url('factura/stock'); ?>?search="></div></td>
-						
+						<td class="text-center"><input id="productos" value="" type="text" ></td>
 
-						<td class=" text-center "><input value="-" type="text" size="5"></td>
-						<td class=" text-right ">$ <input value="200" type="text" size="8"></td>
-						<td class=" text-right ">$ 200</td>
-									</tr>
+						<td class="text-center"><input id="cantidad" value="-" type="text" size="5"></td>
+						<td class="text-center">$ <input type="text" id="precio_producto" disabled="disabled" size="5"></input></td>
+						<td class="text-right ">$ <span id="importe"></span></td>
+				</tr>
 				<tr>
 					<td><button>Mas</button></td>
 				</tr>
@@ -101,19 +100,16 @@
 			</div>
 			<div class="col-xs-2">
 				<strong>
-					$1,200.00
-					<?php 
-							//desarrollar la logica del sub total, el iva (el iva puede cambiar) y total
-						?>    <br/>
-					$ 252.00  	<br/>
+					$<span id="subtotal" ></span>   <br/>
+					$ <span id="iva" ></span>  	<br/>
 					<hr>
-					$ 1,452.00 	<br/>
+					$ <span id="total" > </span>	<br/>
 				</strong>
 			</div>
 		</div>
 		<pre>
-<!-- 			CAE: 6516516516665165165<img sytle="width:30%; " src="<?php echo base_url('images/codigo-barras.jpg');?>">
- -->		</pre>
+			CAE: 6516516516665165165		
+		</pre>
 		<div class="row">
 			<div class = "col-xs-5">
 				datos bancarios
@@ -124,22 +120,74 @@
 		</div>
 	</form>
 </div>
-<script type="text/javascript" src="<?php echo base_url('scripts/autocompletar.js'); ?>"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
             $(document).ready(function(){
-                /* Una vez que se cargo la pagina , llamo a todos los autocompletes y
-                 * los inicializo */
-                $('.autocomplete').autocomplete();
-            });
-          $(function() {
-			    $( "#datepicker" ).datepicker({
-			    	defaultDate: "",
-			    	regional: 'es',
-			    	dateFormat: 'dd/mm/yy'
-			    });
-			    $( "#anim" ).change(function() {
-			      $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
-			    });
-		  });
+                /* Autocompletar */
+                var url = <?php echo "'".base_url('factura/stock')."'"; ?>;
+                var precio_producto = document.getElementById('precio_producto');
+			    var importe = document.getElementById('importe');
+			    var descripcion = document.getElementById('productos');
+			    var codigo = document.getElementById('codigo');
+			    var subtotal = document.getElementById('subtotal');
+			    var iva = document.getElementById('iva');
+			    var total = document.getElementById('total');
+                $('#productos').autocomplete({
+                	source: function (request, response){
+                		$.ajax({
+			                    url: url,
+			                    type: 'GET',
+			                    dataType: 'json',
+			                    data: {
+			                        search: request.term
+			                    },
+			                    success: function(data) {
+			                                    
+			                                    var descrip = [data[0].descripcion];
+			                                    precio_producto.value = data[0].precio_unit;
+	                                   			codigo.value = data[0].cod_articulo;
+			                                    console.log(descrip);
+			                                    response(descrip);
+			                                }
+			                });                 
+			            }
+                });
+                /* Cargar datos del producto */
+		        $('#codigo').focusout(function() {
+		        		var url = <?php echo "'".base_url('factura/stock_datos')."'"; ?>;
+					    
+					   	var cod = $(this).val();
+
+			    	    $.ajax({
+		                    url: url,
+		                    type: 'GET',
+		                    dataType: 'json',
+		                    data: {
+		                    	cod: cod
+		                    },
+		                    success: function(data) {				             
+	                                    precio_producto.value = data[0].precio_unit;
+	                                    descripcion.value = data[0].descripcion;
+
+		                                }
+		                
+		                });    
+                });
+		        $('#cantidad').focusout(function() {
+		        	importe.innerHTML = $(this).val() * $(precio_producto).val();
+		        	subtotal.innerHTML = $(this).val() * $(precio_producto).val();
+		        });
+		        /* Calendario */
+		        $(function() {
+					    $( "#datepicker" ).datepicker({
+					    	regional: 'es',
+					    	dateFormat: 'dd/mm/yy',
+					    	autoSize: true,
+					    	duration: "fast"
+					    });
+					    $( "#anim" ).change(function() {
+					      $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+					    });
+		 		 });
+	      	});			
         </script>
