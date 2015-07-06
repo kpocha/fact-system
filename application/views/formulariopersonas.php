@@ -1,5 +1,8 @@
-<section class="section" style="margin:20px;" >
-  		<?php
+
+<div id="page-wrapper">
+
+	<div class="container-fluid">.
+		<?php
   			extract($_GET);
 	  		if (isset($data)) {
 	  		  	  /*"Cerramos" php, y es como que se crear un nuevo html, asique se ejecuta el script como 
@@ -102,4 +105,6 @@
 		  <a type="button" class="btn btn-default" href="<?php echo base_url($linkcancel); ?>">Cancelar</a>
 		</div>
 	</form>
-</section>
+</div>
+</div>
+</div>

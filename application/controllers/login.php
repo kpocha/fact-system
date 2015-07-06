@@ -8,11 +8,13 @@ class Login extends CI_Controller {
 		$this->load->model('login_model');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 	}
 
 	public function index()
 	{
+
 		$result['title'] = 'Login';
 		$result['main_content'] = 'login';
 		$this->load->view('main_template',$result);
@@ -27,7 +29,8 @@ class Login extends CI_Controller {
 			# code...
 			$this->index();
 		}else{
-			 redirect('/facturacion', 'refresh');
+			$this->session->set_userdata('logged_in', '1');
+			 redirect('/factura', 'refresh');
 
 		}
 	}
@@ -38,6 +41,7 @@ class Login extends CI_Controller {
 			}
 
 		if ($this->login_model->obtener_usuario('usuarios',$value)) {
+
 				return true;
 		}else{
 			return false;
@@ -54,5 +58,13 @@ class Login extends CI_Controller {
 		}else{
 			return false;
 		}
+	}
+	function log_out(){
+		$this->Session->delete('1');
+		$this->Session->destroy();
+		$this->Cookie->delete("1");
+		$this->Cookie->destroy();
+		$this->Auth->logout();
+		$this->redirect('index');
 	}
 }

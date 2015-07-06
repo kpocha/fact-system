@@ -27,7 +27,7 @@ class Factura extends CI_Controller {
  	$this->load->view('main_template',$result); 
  }
  function stock(){
- 	
+ 	$search = $_GET['search'];
  	$data = $this->abm_model->buscar('stock',$search,'descripcion');
  	if ($data == false) {
  		$tmpArray[] = NULL;
@@ -40,6 +40,7 @@ class Factura extends CI_Controller {
 		}
 
 		echo json_encode($tmpArray);
+		return $tmpArray;
 		 }
 	}
 	function stock_datos(){
