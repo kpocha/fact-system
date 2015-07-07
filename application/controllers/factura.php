@@ -27,28 +27,37 @@ class Factura extends CI_Controller {
  	$this->load->view('main_template',$result); 
  }
  function stock(){
- 	$search = trim($_GET['search']);
- 	$data = $this->abm_model->buscar('stock',$search);
- 	//echo json_encode($data[0]->descripcion);
-	foreach ($data as $stock)
-	{
-        $tmpArray[] = $stock->descripcion;
+ 	$search = $_GET['search'];
+ 	$data = $this->abm_model->buscar('stock',$search,'descripcion');
+ 	if ($data == false) {
+ 		$tmpArray[] = NULL;
+ 		echo json_encode($tmpArray);
+ 	}else{
+		foreach ($data as $stock)
+		{
+	        $tmpArray[] = $stock;
+	        $descripcion = $stock->descripcion;
+		}
+
+		echo json_encode($tmpArray);
+		return $tmpArray;
+		 }
 	}
-	//$tmpArray=array("fenet","hola","puto");
-	//$tmpArray["fenet","hola","puto"];
-	$result = $tmpArray;
-	echo json_encode($result);
-	/*
-		function buscar($tabla, $buscar){
-      //$buscar = '%'.$buscar.'%';
-      //$this->db->select('descripcion');
-      $this->db->from($tabla);
-      $this->db->like('descripcion',$buscar);
-      
-      $query = $this->db->get();
-      return $query->result();
-    }
-	*/
- }
+	function stock_datos(){
+		$cod = $_GET['cod'];
+		$data = $this->abm_model->buscar('stock',$cod,'cod_articulo');
+		foreach ($data as $stock)
+		{
+			$tmpArray[] = $stock;
+			$codigo[] = $stock->cod_articulo;
+
+		}
+		//echo json_encode($tmpArray);
+		//echo json_encode($codigo);
+		$result['data'] = $tmpArray;
+		echo json_encode($tmpArray);
+		return $tmpArray;
+
+	}
 }
 ?>

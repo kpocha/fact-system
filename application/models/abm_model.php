@@ -1,6 +1,7 @@
 <?php 
 class Abm_model extends CI_Model {
- function __construct()
+
+function __construct()
     {
         parent::__construct();
     }
@@ -47,5 +48,19 @@ class Abm_model extends CI_Model {
       $sql = $this->db->get('personas');
       return $sql -> result();
     }
+    
+    function buscar($tabla, $buscar, $colum){
+      //$buscar = '%'.$buscar.'%';
+      //$this->db->select('descripcion');
+      $this->db->from($tabla);
+      $this->db->like($colum,$buscar);
+      
+      $query = $this->db->get();
+      if ($query->result() == NULL) return false;
+      else return $query->result();
+      
+      
+    }
+
 } 
  ?>
