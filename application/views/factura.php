@@ -2,7 +2,7 @@
 
         <div id="page-wrapper">
 
-            <div class="container-fluid">
+            <div class="container-fluid" class="container-fluid" style="width:95%; margin:auto;">
 
                 <!-- Page Heading -->
                 <div class="row">
@@ -15,7 +15,7 @@
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i> Factura
+                                <i class="fa fa-table"></i> Factura 
                             </li>
                         </ol>
                     </div>
@@ -113,7 +113,7 @@
                                  
                                 <tbody>
                                     <tr>                    
-                                        <td class="text-center"><input id="codigo" type="text"></td>
+                                        <td class="text-center"><input id="codigo" type="text" size="6"></td>
                                         
                                         <td class="text-center"><input id="productos" value="" type="text" ></td>
 

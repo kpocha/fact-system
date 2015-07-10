@@ -14,10 +14,15 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+			redirect('/factura', 'refresh');
+		}else{
+			$result['title'] = 'Login';
+			$result['main_content'] = 'login';
+			$this->load->view('main_template',$result);
+		}
 
-		$result['title'] = 'Login';
-		$result['main_content'] = 'login';
-		$this->load->view('main_template',$result);
+		
 	}
 	function loguear(){
 		$this->form_validation->set_rules('username','Usuario','required|callback__verificar_usuario');
@@ -29,7 +34,22 @@ class Login extends CI_Controller {
 			# code...
 			$this->index();
 		}else{
-			$this->session->set_userdata('logged_in', '1');
+			$usuario = $this->login_model->obtener_usuario('usuarios',$_POST['username']);
+			foreach ($usuario as $key) {
+				$data['uid'] = $key->uid;
+				$data['user'] = $key->user;
+				$data['rol'] = $key->rol;
+			}
+			echo json_encode($data);
+			  $userdata = array(
+                    'logged_in' => TRUE,
+                    'user_id' => $data['uid'],
+                    'username' => $data['user'],
+                    'user_type' => $data['rol']
+                    );
+
+                // Execute the set_userdata, to our session
+                $this->session->set_userdata($userdata);
 			 redirect('/factura', 'refresh');
 
 		}
@@ -60,11 +80,11 @@ class Login extends CI_Controller {
 		}
 	}
 	function log_out(){
-		$this->Session->delete('1');
-		$this->Session->destroy();
-		$this->Cookie->delete("1");
-		$this->Cookie->destroy();
-		$this->Auth->logout();
-		$this->redirect('index');
+		//$this->session->destroy();
+		$this->session->sess_destroy();
+		//$this->Cookie->delete("1");
+		//$this->Cookie->destroy();
+		//$this->Auth->logout();
+		redirect('login', 'refresh');
 	}
 }
