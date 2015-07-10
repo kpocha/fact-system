@@ -17,7 +17,12 @@ class Personas extends CI_Controller {
 	{
 		//lo primero que hacemos al entrar a facturacion es listar
 		//enviamos al método listar
-		$this->listar_clientes();
+		if ($this->session->userdata('logged_in') == TRUE) {
+			$this->listar_clientes();
+		}else{
+			redirect('/login', 'refresh');
+		}
+		
 	}
 public function listar_clientes()
 	{

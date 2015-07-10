@@ -16,7 +16,12 @@ class Factura extends CI_Controller {
 	{
 		//lo primero que hacemos al entrar a facturacion es listar
 		//enviamos al método listar
-		$this->formulario();
+		if ($this->session->userdata('logged_in') == TRUE) {
+			$this->formulario();
+		}else{
+			redirect('/login', 'refresh');
+		}
+		
 	}
  public function formulario()
  {	//Le asignamos el titulo a la vista

@@ -4,6 +4,23 @@
 
 		<div class="container-fluid" style="width:95%; margin:auto;">
 			<!-- <div id="container" class="table-responsive" style="width:95%; margin:auto;"> -->
+			                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Clientes
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Clientes 
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
 				<div class="row">
 					<div class="col-sm-3">
 						<br/>
