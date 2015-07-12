@@ -21,7 +21,6 @@ class Factura extends CI_Controller {
 		}else{
 			redirect('/login', 'refresh');
 		}
-		
 	}
  public function formulario()
  {	//Le asignamos el titulo a la vista

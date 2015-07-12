@@ -12,6 +12,12 @@ class Login_model extends CI_Model {
         $sql = $this->db->get($tabla);
         return $sql->result();
       }
+      function obtener_pass($tabla,$dato)
+      { 
+        $this->db->where('pass', $dato);
+        $sql = $this->db->get($tabla);
+        return $sql->result();
+      }
 
   
 
