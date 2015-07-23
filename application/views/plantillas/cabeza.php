@@ -118,8 +118,8 @@
                     <li>
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    <li <?php if (current_url() == base_url('pedidos')) echo 'class="active"'; ?>>
+                        <a href="charts.html"><i class="fa fa-fw fa-truck"></i> Pedidos</a>
                     </li>
                     <li <?php if (current_url() == base_url('factura')) echo 'class="active"'; ?>>
                         <a href="<?php echo base_url('factura'); ?>"><i class="fa fa-fw fa-table"></i> Facturas</a>
@@ -128,13 +128,13 @@
                         <a href="<?php echo base_url('personas'); ?>"><i class="fa fa-fw fa-edit"></i> Clientes</a>
                     </li>
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-cubes"></i> Stock</a>
                     </li>
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-area-chart"></i> Graficos</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Informes <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="#">Dropdown Item</a>
@@ -154,3 +154,5 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+
+        

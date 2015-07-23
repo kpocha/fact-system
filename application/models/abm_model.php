@@ -61,6 +61,12 @@ function __construct()
       
       
     }
+    function utimoregistro($tabla)
+    {   
+        $this->db->select('MAX(id_factura) as ultimo');
+        $query = $this->db->get('fact_cabecera' );
+        return $query->result();
+    }
 
 } 
  ?>

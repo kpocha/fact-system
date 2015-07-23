@@ -1,43 +1,40 @@
-<div id="container" class="table-responsive" style="width:95%; margin:auto;">
-	<div class="row">
-		<div class="col-sm-3">
-			<br/>
-			<input id="buscar" type="text" class="form-control" placeholder="Buscar">
-			<br/>
-		</div> 
-		<div class="col-sm-3 ">
-			<br/>
-			<a class="btn btn-default" href="<?php echo base_url('facturacion/formulario'); ?> ">Nuevo</a>
-			<br/>
-		</div>
-		<!-- <div class="col-sm-3">
-			<br/>
-			<br/>
-		</div> -->
-		<!-- <div class="col-sm-3">
-			<br/>
-			llamar
-			<br/>
-		</div> -->
-	</div>
-
-	<div id="tabla">
-		<?php $this->load->view('tablafacturaa'); ?>
-	</div>
-</div>
-<!-- Acá empieza la ventana popup -->
-<div id="dialog-form" title="Create new user">
-	<form>
-		<fieldset>
-			<div class="form-group">
-			    <label for="exampleInputEmail1">Comment</label>
-				<textarea id="comentario" class="form-control" name="comentario" placeholder="Comment ..."></textarea>
+  <div id="page-wrapper">
+    <div class="container-fluid" class="container-fluid" style="width:95%; margin:auto;">	
+    <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            <?php echo $title ?>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Factura 
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+    	<div class="row">
+			<div class="col-sm-3">
+				<br/>
+				<input id="buscar" type="text" class="form-control" placeholder="Buscar">
+				<br/>
+			</div> 
+			<div class="col-sm-3 ">
+				<br/>
+				<a class="btn btn-default" href="<?php echo base_url('factura/formulario'); ?> ">Nuevo</a>
+				<br/>
 			</div>
-			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-		</fieldset>
-	</form>
+		</div>
+		<div id="tabla">
+			<?php $this->load->view('tablafacturaa'); ?>
+		</div>
+	</div>
+  </div>
 </div>
-<!-- Acá termina la ventana popup -->
 
 <script language="javascript" type="text/javascript">
 

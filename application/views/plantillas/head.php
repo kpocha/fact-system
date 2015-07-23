@@ -17,3 +17,4 @@
 	<script src= "<?php echo base_url('scripts/bootstrap.min.js'); ?>" ></script>
 
 </head>
+<body>

@@ -8,14 +8,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Clientes
+                            <?php echo $title ?>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i> Clientes 
+                                <i class="fa fa-table"></i> <?php echo $title ?> 
                             </li>
                         </ol>
                     </div>
